@@ -1,0 +1,42 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/blahajbot
+        username: 
+        password: 
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format-sql: true
+    quartz:
+        job-store-type: jdbc
+        properties:
+            org:
+                quartz:
+                    jobStore:
+                        driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+    security:
+        oauth2:
+            client:
+                registration:
+                    discord:
+                        provider: discord
+                        client-id:
+                        client-secret: 
+                        client-authentication-method: client-secret-post
+                        authorization-grant-type: authorization_code
+                        scope:
+                            - identify
+                        redirect-uri: "http://localhost:8080/login/oauth2/code/discord"
+                        clientName: FourScouts client
+                provider:
+                    discord:
+                        authorization-uri: https://discordapp.com/api/oauth2/authorize
+                        token-uri: https://discordapp.com/api/oauth2/token
+                        user-info-uri: https://discordapp.com/api/users/@me
+                        user-name-attribute: username
+token:
+frontend-url: http://localhost:5173
