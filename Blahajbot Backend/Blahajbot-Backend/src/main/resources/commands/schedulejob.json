@@ -1,0 +1,54 @@
+{
+    "name": "schedulejob",
+    "description": "Creates a scheduled message",
+    "options": [
+        {
+            "name": "label",
+            "description": "The label for the job you wish to create",
+            "type": 3,
+            "required": true
+        },
+        {
+            "name": "channel",
+            "description": "The channel you wish the message to be sent in",
+            "type": 7,
+            "required": true
+        },
+        {
+            "name": "message",
+            "description": "The message you wish to send",
+            "type": 3,
+            "required": true
+        },
+        {
+            "name": "month",
+            "description": "The month you wish the message to occur. Compatible with cron formatting.",
+            "type": 3,
+            "required": false
+        },
+        {
+            "name": "dayofweek",
+            "description": "The month you wish the message to occur. Compatible with cron formatting.",
+            "type": 3,
+            "required": false
+        },
+        {
+            "name": "dayofmonth",
+            "description": "The month you wish the message to occur. Compatible with cron formatting.",
+            "type": 3,
+            "required": false
+        },
+        {
+            "name": "hour",
+            "description": "The month you wish the message to occur. Compatible with cron formatting.",
+            "type": 3,
+            "required": false
+        },
+        {
+            "name": "minute",
+            "description": "The month you wish the message to occur. Compatible with cron formatting.",
+            "type": 3,
+            "required": false
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "removejob",
+    "description": "Deletes an existing scheduled message",
+    "options": [
+        {
+            "name": "id",
+            "description": "The id of the job you wish to delete",
+            "type": 4,
+            "required": true
+        }
+    ]
+}
