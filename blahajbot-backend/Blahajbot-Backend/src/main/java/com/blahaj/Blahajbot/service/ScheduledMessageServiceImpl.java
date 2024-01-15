@@ -49,7 +49,13 @@ public class ScheduledMessageServiceImpl implements ScheduledMessageService{
 
     @Override
     public List<ScheduledMessage> getScheduledMessages(){
-        return (List<ScheduledMessage>) scheduledMessageRepository.findAll();
+        try{
+            return (List<ScheduledMessage>) scheduledMessageRepository.findAll();
+        }
+        catch(Exception e){
+            LOG.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     @Override

@@ -112,17 +112,21 @@ export default {
                 dayOfMonth: '',
                 month: '',
                 dayOfWeek: '',
-            }
+            },
+            xsrfToken: ''
         }
     },
 
     beforeMount(){
-        this.getScheduledMessages();
+        this.getScheduledMessage();
     },
 
     methods: {
-        getScheduledMessages(){
-            fetch(`http://localhost:8080/scheduled-message/${this.$route.params.id}`)
+       getScheduledMessage(){
+            fetch(`http://localhost:8080/scheduled-message/${this.$route.params.id}`, {
+                method: 'GET',
+                credentials: 'include',
+            })
             .then(res => res.json())
             .then(data => {
                 this.scheduledMessage = data;
@@ -140,7 +144,7 @@ export default {
             })
             .then(data => {
                 console.log(data);
-                this.$router.push('/');
+                this.$router.push('/scheduled_messages');
             })
         }
     }

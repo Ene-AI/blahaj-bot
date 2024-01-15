@@ -1,25 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ViewScheduledMessages from '../views/ViewScheduledMessages.vue'
+import { routes } from "./routes";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: ViewScheduledMessages
-    },
-    {
-      path: '/add',
-      name: 'add',
-      component: ()=>import ('../views/AddScheduledMessage.vue')
-    },
-    {
-      path: '/edit/:id',
-      name: 'edit',
-      component: () => import('../views/UpdateScheduledMessage.vue')
-    }
-  ]
-})
+  routes: routes
+});
+
+router.beforeEach((to, from, next) => {
+  let requiresAuth = to.matched.some(value => value.meta.requiresAuth);
+  let currentUser = localStorage.getItem("currentUser");
+
+  if(requiresAuth && !currentUser || requiresAuth && currentUser === {}) {
+    next("/login");
+  } else {
+    next();
+  }
+});
 
 export default router

@@ -69,7 +69,8 @@ import NavBar from '../components/NavBar.vue'
 
         methods: {
             getScheduledMessages(){
-                fetch('http://localhost:8080/scheduled-messages')
+                fetch('http://localhost:8080/scheduled-messages', {
+                })
                 .then(res => res.json())
                 .then(data => {
                     this.scheduledMessages = data

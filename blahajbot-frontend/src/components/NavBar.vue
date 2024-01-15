@@ -16,9 +16,6 @@
                         </li>
                     </ul>
                 </div>
-                <a id="login" v-if="access_token.length == 0" href="https://discord.com/api/oauth2/authorize?client_id=1075956771425890354&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2F&scope=identify+guilds">
-                    Login Using Discord
-                </a>
                 <div class="dropdown" v-if="access_token.length > 0">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     </button>
