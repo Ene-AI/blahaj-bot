@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.blahaj.Blahajbot.entity.ScheduledMessage;
 import com.blahaj.Blahajbot.service.ScheduledMessageService;
 
-import de.vandermeer.asciitable.AsciiTable;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import reactor.core.publisher.Mono;
 
@@ -28,18 +27,13 @@ public class ListJobsCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        String guildId = event.getInteraction().getGuild().toString();
-        List<ScheduledMessage> guildMessages = scheduledMessageService.getScheduledMessagesByGuild(guildId);
-        AsciiTable at = new AsciiTable();
-        at.addRule();
-        at.addRow("Label", "Message", "Cron");
-        at.addRule();
-        for(ScheduledMessage message : guildMessages){
-            at.addRow(message.getLabel(), message.getMessage(), message.generateCron());
-            at.addRule();
+        long guildId = event.getInteraction().getGuild().block().getId().asLong();
+        List<ScheduledMessage> guildMessages = scheduledMessageService.getScheduledMessages(guildId);
+        String output = "Id, Label, Cron, Message:";
+        for(ScheduledMessage s : guildMessages){
+            output += "\n" + s.getId() + ", " + s.getLabel() + ", " + s.generateCron() + ", " + s.getMessage();
         }
-        String outputTable = at.render();
         return  event.reply()
-            .withContent(outputTable);
+            .withContent(output);
     }
 }

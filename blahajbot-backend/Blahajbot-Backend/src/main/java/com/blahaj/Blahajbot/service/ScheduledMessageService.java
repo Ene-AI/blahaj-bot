@@ -10,8 +10,7 @@ import com.blahaj.Blahajbot.entity.ScheduledMessage;
 public interface ScheduledMessageService {
     public ScheduledMessage addScheduledMessage(ScheduledMessage scheduledMessage);
     public ScheduledMessage getScheduledMessageById(long id);
-    public List<ScheduledMessage> getScheduledMessages();
-    public List<ScheduledMessage> getScheduledMessagesByGuild(String guildId);
+    public List<ScheduledMessage> getScheduledMessages(long guildId);
     public void deleteScheduledMessage(long id);
     public ScheduledMessage updateScheduledMessage(ScheduledMessage scheduledMessage);
 }

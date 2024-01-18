@@ -1,90 +1,85 @@
 <template>
-    <main>
+    <v-layout>
         <NavBar/>
-        <div class="my-5">
-            <div class="mx-auto w-25" style="max-width: 100%">
-                <h2 class="text-center mb-3">Add Job</h2>
-                <form @submit.prevent="addScheduledMessage">
-                    <!--guildId-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="guildId" class="form-label">Guild ID</label>
-                            <input type="text" name="guildId" id="guildId" class="form-control" placeholder="guildId" required v-model="scheduledMessage.guildId">
+        <v-main>
+            <div class="my-5">
+                <div class="mx-auto w-25" style="max-width: 100%">
+                    <h2 class="text-center mb-3">Add Job</h2>
+                    <form @submit.prevent="addScheduledMessage">
+                        <!--channelId-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="channelId" class="form-label">Channel Id</label>
+                                <input type="text" name="channelId" id="channelId" class="form-control" placeholder="channelId" required v-model="scheduledMessage.channelId">
+                            </div>
                         </div>
-                    </div>
-                    <!--channelId-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="channelId" class="form-label">Channel Id</label>
-                            <input type="text" name="channelId" id="channelId" class="form-control" placeholder="channelId" required v-model="scheduledMessage.channelId">
+                        <!--name-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="label" class="form-label">Label</label>
+                                <input type="text" name="label" id="label" class="form-control" placeholder="label" required v-model="scheduledMessage.label">
+                            </div>
                         </div>
-                    </div>
-                    <!--name-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="label" class="form-label">Label</label>
-                            <input type="text" name="label" id="label" class="form-control" placeholder="label" required v-model="scheduledMessage.label">
+                        <!--message-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <input type="text" name="message" id="message" class="form-control" placeholder="Message" required v-model="scheduledMessage.message">
+                            </div>
                         </div>
-                    </div>
-                    <!--message-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <input type="text" name="message" id="message" class="form-control" placeholder="Message" required v-model="scheduledMessage.message">
+                        <!--repeats-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="repeat" class="form-label">Repeat</label>
+                                <input type="checkbox" value="repeat" id="repeat" v-model="scheduledMessage.repeat">
+                            </div>
                         </div>
-                    </div>
-                    <!--repeats-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="repeat" class="form-label">Repeat</label>
-                            <input type="checkbox" value="repeat" id="repeat" v-model="scheduledMessage.repeat">
+                        <!--minute-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="minute" class="form-label">Minute</label>
+                                <input type="text" value="minute" id="minute" class="form-control" placeholder=-1 v-model.number="scheduledMessage.minute">
+                            </div>
                         </div>
-                    </div>
-                    <!--minute-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="minute" class="form-label">Minute</label>
-                            <input type="text" value="minute" id="minute" class="form-control" placeholder=-1 v-model.number="scheduledMessage.minute">
+                        <!--hour-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="hour" class="form-label">Hour</label>
+                                <input type="text" value="hour" id="hour" class="form-control" placeholder=-1 v-model.number="scheduledMessage.hour">
+                            </div>
                         </div>
-                    </div>
-                    <!--hour-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="hour" class="form-label">Hour</label>
-                            <input type="text" value="hour" id="hour" class="form-control" placeholder=-1 v-model.number="scheduledMessage.hour">
+                        <!--dayOfMonth-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="dayOfMonth" class="form-label">Day Of Month</label>
+                                <input type="text" value="dayOfMonth" id="dayOfMonth" class="form-control" placeholder=-1 v-model.number="scheduledMessage.dayOfMonth">
+                            </div>
                         </div>
-                    </div>
-                    <!--dayOfMonth-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="dayOfMonth" class="form-label">Day Of Month</label>
-                            <input type="text" value="dayOfMonth" id="dayOfMonth" class="form-control" placeholder=-1 v-model.number="scheduledMessage.dayOfMonth">
+                        <!--month-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="month" class="form-label">Month</label>
+                                <input type="text" value="month" id="month" class="form-control" placeholder=-1 v-model.number="scheduledMessage.month">
+                            </div>
                         </div>
-                    </div>
-                    <!--month-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="month" class="form-label">Month</label>
-                            <input type="text" value="month" id="month" class="form-control" placeholder=-1 v-model.number="scheduledMessage.month">
+                        <!--dayOfWeek-->
+                        <div class="row">
+                            <div class="col-md-12 form-group mb-3">
+                                <label for="dayOfWeek" class="form-label">Day Of Week</label>
+                                <input type="text" value="dayOfWeek" id="dayOfWeek" class="form-control" placeholder=-1 v-model.number="scheduledMessage.dayOfWeek">
+                            </div>
                         </div>
-                    </div>
-                    <!--dayOfWeek-->
-                    <div class="row">
-                        <div class="col-md-12 form-group mb-3">
-                            <label for="dayOfWeek" class="form-label">Day Of Week</label>
-                            <input type="text" value="dayOfWeek" id="dayOfWeek" class="form-control" placeholder=-1 v-model.number="scheduledMessage.dayOfWeek">
+                        
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <input type="submit" value="Submit" class="btn btn-primary w-100">
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <input type="submit" value="Submit" class="btn btn-primary w-100">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </main>
+        </v-main>
+    </v-layout>
 </template>
 
 <script>
@@ -105,18 +100,22 @@ export default {
                 message: '',
                 repeat: false,
 
-                minute: 0,
-                hour: -1,
-                dayOfMonth: -1,
-                month: -1,
-                dayOfWeek: -1,
+                minute: '*',
+                hour: '*',
+                dayOfMonth: '?',
+                month: '*',
+                dayOfWeek: '?',
             }
         }
     },
 
+    beforeMount(){
+        this.setGuildId(this.$route.params.guildId);
+    },
+
     methods: {
         addScheduledMessage(){
-            fetch('http://localhost:8080/add',{
+            fetch(`http://localhost:8080/${this.$route.params.guildId}/add`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -124,9 +123,12 @@ export default {
                 body: JSON.stringify(this.scheduledMessage)
             })
             .then(data => {
-                console.log(data)
-                this.$router.push("/")
+                console.log(data);
+                this.$router.push(`/${this.$route.params.guildId}/scheduled_messages`);
             })
+        },
+        setGuildId(guildId){
+            this.scheduledMessage.guildId = guildId;
         }
     }
 }

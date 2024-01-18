@@ -27,13 +27,13 @@ public class RemoveCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        String guildId = event.getInteraction().getGuild().toString();
+        long guildId = event.getInteraction().getGuild().block().getId().asLong();
         long id = event.getOption("id")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asLong)
             .get();
         try{
-            if(scheduledMessageService.getScheduledMessageById(id).getGuildId().equals(guildId)){
+            if(scheduledMessageService.getScheduledMessageById(id).getGuildId() == guildId){
                 scheduledMessageService.deleteScheduledMessage(id);;
 
                 return event.reply()

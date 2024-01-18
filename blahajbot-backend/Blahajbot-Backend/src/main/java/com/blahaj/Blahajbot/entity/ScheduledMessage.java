@@ -26,9 +26,9 @@ public class ScheduledMessage implements Serializable{
     private long id;
 
     @Column(name = "guild_id")
-    private String guildId;
+    private long guildId;
     @Column(name = "channel_id")
-    private String channelId;
+    private long channelId;
     private String label;
     private String message;
     private boolean repeat;
@@ -42,7 +42,7 @@ public class ScheduledMessage implements Serializable{
         
     }
 
-    public ScheduledMessage(String guildId, String channelId, String label, String message, boolean repeat, String minute,
+    public ScheduledMessage(long guildId, long channelId, String label, String message, boolean repeat, String minute,
     String hour, String dayOfMonth, String month, String dayOfWeek) {
         this.guildId = guildId;
         this.channelId = channelId;
@@ -54,13 +54,41 @@ public class ScheduledMessage implements Serializable{
         this.dayOfMonth = dayOfMonth;
         this.month = month;
         this.dayOfWeek = dayOfWeek;
-        if(dayOfMonth == "?" && dayOfWeek == "?"){
+        if(this.dayOfMonth.equals("?") && this.dayOfWeek.equals("?")){
             this.dayOfMonth = "*";
+        }
+        if(this.dayOfMonth.equals("*") && this.dayOfWeek.equals("*")){
+            this.dayOfWeek = "?";
+        }
+    }
+
+    public ScheduledMessage(ScheduledMessage scheduledMessage) {
+        this.guildId = scheduledMessage.getGuildId();
+        this.channelId = scheduledMessage.getChannelId();
+        this.label = scheduledMessage.getLabel();
+        this.message = scheduledMessage.getMessage();
+        this.repeat = scheduledMessage.isRepeat();
+        this.minute = scheduledMessage.getMinute();
+        this.hour = scheduledMessage.getHour();
+        this.dayOfMonth = scheduledMessage.getDayOfMonth();
+        this.month = scheduledMessage.getMonth();
+        this.dayOfWeek = scheduledMessage.getDayOfWeek();
+        if(this.dayOfMonth.equals("?") && this.dayOfWeek.equals("?")){
+            this.dayOfMonth = "*";
+        }
+        if(this.dayOfMonth.equals("*") && this.dayOfWeek.equals("*")){
+            this.dayOfWeek = "?";
         }
     }
 
     public String generateCron(){
         List<String> cronValues = List.of("0", minute, hour, dayOfMonth, month, dayOfWeek);
+        if(dayOfMonth == "?" && dayOfWeek == "?"){
+            dayOfMonth = "*";
+        }
+        if(dayOfMonth == "*" && dayOfWeek == "*"){
+            dayOfWeek = "?";
+        }
         String cronStatement = String.join(" ", cronValues);
         return cronStatement;
     }

@@ -10,8 +10,8 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(value => value.meta.requiresAuth);
   let currentUser = localStorage.getItem("currentUser");
 
-  if(requiresAuth && !currentUser || requiresAuth && currentUser === {}) {
-    next("/login");
+  if(requiresAuth && !currentUser) {
+    next("/");
   } else {
     next();
   }

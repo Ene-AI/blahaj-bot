@@ -28,18 +28,18 @@ public class ScheduleOneTimeCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        String guildId = event.getInteraction().getGuild().toString();
+        long guildId = event.getInteraction().getGuild().block().getId().asLong();
         String label = event.getOption("label")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
             .get();
-        String channelId = event.getOption("channel")
+        long channelId = event.getOption("channel")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asChannel)
             .get()
             .block()
             .getId()
-            .asString(); 
+            .asLong(); 
         String message = event.getOption("message")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)

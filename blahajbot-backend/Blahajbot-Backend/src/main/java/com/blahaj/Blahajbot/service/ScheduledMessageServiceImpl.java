@@ -30,7 +30,8 @@ public class ScheduledMessageServiceImpl implements ScheduledMessageService{
     @Override
     public ScheduledMessage addScheduledMessage(ScheduledMessage scheduledMessage) {
         try{
-        scheduledMessage = scheduledMessageRepository.save(scheduledMessage);
+        scheduledMessage = new ScheduledMessage(scheduledMessage);
+        scheduledMessageRepository.save(scheduledMessage);
         schedulerService.schedule(scheduledMessage);
         return scheduledMessage;
         }
@@ -48,9 +49,9 @@ public class ScheduledMessageServiceImpl implements ScheduledMessageService{
     
 
     @Override
-    public List<ScheduledMessage> getScheduledMessages(){
+    public List<ScheduledMessage> getScheduledMessages(long guildId){
         try{
-            return (List<ScheduledMessage>) scheduledMessageRepository.findAll();
+            return (List<ScheduledMessage>) scheduledMessageRepository.findByGuildId(guildId);
         }
         catch(Exception e){
             LOG.error(e.getMessage(), e);
@@ -78,10 +79,5 @@ public class ScheduledMessageServiceImpl implements ScheduledMessageService{
             LOG.error(e.getMessage(), e);
             return null;
         }
-    }
-
-    @Override
-    public List<ScheduledMessage> getScheduledMessagesByGuild(String guildId) {
-        return (List<ScheduledMessage>) scheduledMessageRepository.findByGuildId(guildId);
     }
 }

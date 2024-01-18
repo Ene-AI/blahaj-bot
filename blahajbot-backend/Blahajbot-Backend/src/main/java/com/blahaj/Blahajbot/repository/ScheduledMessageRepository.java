@@ -11,5 +11,5 @@ import java.util.List;
 public interface ScheduledMessageRepository 
     extends JpaRepository<ScheduledMessage, Long>{
         List<ScheduledMessage> findById(long id);
-        List<ScheduledMessage> findByGuildId(String guildId);
+        List<ScheduledMessage> findByGuildId(long guildId);
 }

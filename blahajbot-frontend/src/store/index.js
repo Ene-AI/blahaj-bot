@@ -29,6 +29,6 @@ export default createStore({
   getters: {
     isAuthenticated: (state) => {
       return JSON.stringify(state.currentUser).includes("name");
-    }
+    },
   }
 });

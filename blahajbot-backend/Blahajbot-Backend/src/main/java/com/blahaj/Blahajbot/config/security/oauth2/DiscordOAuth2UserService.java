@@ -44,5 +44,4 @@ public class DiscordOAuth2UserService implements OAuth2UserService<OAuth2UserReq
 
         return new DiscordOAuth2User(attributes, guilds);
     }
-
 }

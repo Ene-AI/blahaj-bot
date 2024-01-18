@@ -1,23 +1,11 @@
-//import HomeComponent from '../components/home/HomeComponent';
-//import LoginComponent from "../components/auth/LoginComponent";
-//import LogoutComponent from "../components/auth/LogoutComponent";
-
 export const routes = [
     {
         path: '/',
         name: 'Home',
-        component: ()=>import ('../components/home/HomeComponent.vue'),
+        component: ()=>import ('../views/Home.vue'),
         meta: {
             requiresAuth: false
     }
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: ()=>import ('../components/auth/LoginComponent.vue'),
-        meta: {
-            requiresAuth: false
-        }
     },
     {
         path: '/logout',
@@ -28,7 +16,7 @@ export const routes = [
         }
     },
     {
-      path: '/scheduled_messages',
+      path: '/:guildId/scheduled_messages',
       name: 'scheduled_messages',
       component: ()=>import ('../views/ViewScheduledMessages.vue'),
       meta: {
@@ -36,7 +24,7 @@ export const routes = [
       }
     },
     {
-      path: '/add',
+      path: '/:guildId/add',
       name: 'add',
       component: ()=>import ('../views/AddScheduledMessage.vue'),
       meta: {
@@ -44,7 +32,7 @@ export const routes = [
       }
     },
     {
-      path: '/edit/:id',
+      path: '/:guildId/edit/:id',
       name: 'edit',
       component: () => import('../views/UpdateScheduledMessage.vue'),
       meta: {
