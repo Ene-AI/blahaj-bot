@@ -6,12 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.blahaj.Blahajbot.entity.ScheduledMessage;
-import com.blahaj.Blahajbot.repository.ScheduledMessageRepository;
-
-import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.object.entity.channel.GuildMessageChannel;
 import discord4j.core.object.entity.Guild;
 
 @Component
