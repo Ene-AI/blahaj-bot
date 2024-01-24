@@ -27,7 +27,7 @@ public class RemoveCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        long guildId = event.getInteraction().getGuild().block().getId().asLong();
+        String guildId = event.getInteraction().getGuild().block().getId().asString();
         long id = event.getOption("id")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asLong)

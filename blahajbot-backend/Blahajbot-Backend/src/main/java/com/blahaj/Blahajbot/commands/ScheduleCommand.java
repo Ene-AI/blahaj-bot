@@ -28,18 +28,18 @@ public class ScheduleCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        long guildId = event.getInteraction().getGuild().block().getId().asLong();
+        String guildId = event.getInteraction().getGuild().block().getId().asString();
         String label = event.getOption("label")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
             .get();
-        long channelId = event.getOption("channel")
+        String channelId = event.getOption("channel")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asChannel)
             .get()
             .block()
             .getId()
-            .asLong(); 
+            .asString(); 
         String message = event.getOption("message")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
@@ -65,7 +65,7 @@ public class ScheduleCommand implements SlashCommand{
             .map(ApplicationCommandInteractionOptionValue::asString)
             .orElse("*");
         try{
-            ScheduledMessage scheduledMessage = new ScheduledMessage(guildId, channelId, label, message, true, minute, hour, dayOfMonth, month, dayOfWeek);
+            ScheduledMessage scheduledMessage = new ScheduledMessage(guildId, channelId, label, message, true, minute, hour, dayOfMonth, month, dayOfWeek, (double)0);
             scheduledMessageService.addScheduledMessage(scheduledMessage);
 
             return event.reply()

@@ -26,9 +26,9 @@ public class ScheduledMessage implements Serializable{
     private long id;
 
     @Column(name = "guild_id")
-    private long guildId;
+    private String guildId;
     @Column(name = "channel_id")
-    private long channelId;
+    private String channelId;
     private String label;
     private String message;
     private boolean repeat;
@@ -37,13 +37,14 @@ public class ScheduledMessage implements Serializable{
     private String dayOfMonth;
     private String month;
     private String dayOfWeek;
+    private double year;
 
     public ScheduledMessage(){
         
     }
 
-    public ScheduledMessage(long guildId, long channelId, String label, String message, boolean repeat, String minute,
-    String hour, String dayOfMonth, String month, String dayOfWeek) {
+    public ScheduledMessage(String guildId, String channelId, String label, String message, boolean repeat, String minute,
+    String hour, String dayOfMonth, String month, String dayOfWeek, double year) {
         this.guildId = guildId;
         this.channelId = channelId;
         this.label = label;
@@ -60,6 +61,7 @@ public class ScheduledMessage implements Serializable{
         if(this.dayOfMonth.equals("*") && this.dayOfWeek.equals("*")){
             this.dayOfWeek = "?";
         }
+        this.year=year;
     }
 
     public ScheduledMessage(ScheduledMessage scheduledMessage) {
@@ -79,6 +81,7 @@ public class ScheduledMessage implements Serializable{
         if(this.dayOfMonth.equals("*") && this.dayOfWeek.equals("*")){
             this.dayOfWeek = "?";
         }
+        this.year=scheduledMessage.getYear();
     }
 
     public String generateCron(){
@@ -94,6 +97,6 @@ public class ScheduledMessage implements Serializable{
     }
 
     public Date generateDate(){
-        return DateBuilder.dateOf(Integer.parseInt(hour),Integer.parseInt(minute), 0,Integer.parseInt(dayOfMonth), Integer.parseInt(month));
+        return DateBuilder.dateOf(Integer.parseInt(hour),Integer.parseInt(minute), 0,Integer.parseInt(dayOfMonth), Integer.parseInt(month), (int)year);
     }
 }

@@ -27,7 +27,7 @@ public class ListJobsCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        long guildId = event.getInteraction().getGuild().block().getId().asLong();
+        String guildId = event.getInteraction().getGuild().block().getId().asString();
         List<ScheduledMessage> guildMessages = scheduledMessageService.getScheduledMessages(guildId);
         String output = "Id, Label, Cron, Message:";
         for(ScheduledMessage s : guildMessages){

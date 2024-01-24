@@ -1,6 +1,7 @@
 package com.blahaj.Blahajbot.config.security;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class WebSecurityConfig implements WebMvcConfigurer{
 
     private final DiscordOAuth2UserService oAuth2UserService;
 
+    @Value("${frontend-url}")
+    String frontEndURL;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         final CsrfTokenRequestAttributeHandler csrfRequestHandler = new CsrfTokenRequestAttributeHandler();
@@ -36,7 +40,7 @@ public class WebSecurityConfig implements WebMvcConfigurer{
                 .logout(logout -> logout.logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpStatus.OK.value())))
                 .oauth2Login(oauth2 -> {
                     oauth2.userInfoEndpoint(user -> user.userService(this.oAuth2UserService));
-                    oauth2.defaultSuccessUrl("http://localhost:5173/", true);
+                    oauth2.defaultSuccessUrl(frontEndURL, true);
                     oauth2.permitAll();
                 });
 
@@ -46,7 +50,7 @@ public class WebSecurityConfig implements WebMvcConfigurer{
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("http://localhost:5173")
+            .allowedOrigins(frontEndURL)
             .allowedMethods("GET", "POST", "HEAD", "OPTIONS", "PUT", "PATCH", "DELETE")
             .allowCredentials(true);
     }

@@ -28,7 +28,7 @@ public class UpdateCommand implements SlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        long guildId = event.getInteraction().getGuild().block().getId().asLong();
+        String guildId = event.getInteraction().getGuild().block().getId().asString();
         long id = event.getOption("id")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asLong)
@@ -37,13 +37,13 @@ public class UpdateCommand implements SlashCommand{
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
             .get();
-        long channelId = event.getOption("channel")
+        String channelId = event.getOption("channel")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asChannel)
             .get()
             .block()
             .getId()
-            .asLong(); 
+            .asString(); 
         String message = event.getOption("message")
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
@@ -72,8 +72,12 @@ public class UpdateCommand implements SlashCommand{
             .flatMap(ApplicationCommandInteractionOption::getValue)
             .map(ApplicationCommandInteractionOptionValue::asString)
             .orElse("*");
+        double year = event.getOption("minute")
+        .flatMap(ApplicationCommandInteractionOption::getValue)
+        .map(ApplicationCommandInteractionOptionValue::asDouble)
+        .orElse((double)0);
         try{
-            ScheduledMessage scheduledMessage = new ScheduledMessage(guildId, channelId, label, message, repeat, minute, hour, dayOfMonth, month, dayOfWeek);
+            ScheduledMessage scheduledMessage = new ScheduledMessage(guildId, channelId, label, message, repeat, minute, hour, dayOfMonth, month, dayOfWeek, year);
             scheduledMessage.setId(id);
             scheduledMessageService.updateScheduledMessage(scheduledMessage);
 

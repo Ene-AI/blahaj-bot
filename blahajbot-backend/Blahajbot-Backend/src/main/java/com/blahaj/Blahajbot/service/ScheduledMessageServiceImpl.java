@@ -49,7 +49,7 @@ public class ScheduledMessageServiceImpl implements ScheduledMessageService{
     
 
     @Override
-    public List<ScheduledMessage> getScheduledMessages(long guildId){
+    public List<ScheduledMessage> getScheduledMessages(String guildId){
         try{
             return (List<ScheduledMessage>) scheduledMessageRepository.findByGuildId(guildId);
         }

@@ -13,6 +13,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
+
 const vuetify = createVuetify({
     components,
     directives,

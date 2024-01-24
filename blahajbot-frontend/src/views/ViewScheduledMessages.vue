@@ -34,7 +34,7 @@
                                     <td>{{ scheduledMessage.dayOfWeek }}</td>
                                     <td>{{ scheduledMessage.repeat }}</td>
                                     <td class="d-flex flex-wrap ga-3">
-                                        <v-btn color='primary' :href="`/edit/${scheduledMessage.id}`">Edit</v-btn>
+                                        <v-btn color='primary' :href="editlink + `${scheduledMessage.id}`">Edit</v-btn>
 
                                         <v-btn color='red' @click="deleteScheduledMessage(scheduledMessage.id)">Delete</v-btn>
                                     </td>
@@ -63,7 +63,8 @@ import { watch } from 'vue'
         data() {
             return {
                 scheduledMessages: [],
-                addlink: ''
+                addlink: '',
+                editlink: ''
             }
         },
         beforeMount(){
@@ -71,6 +72,7 @@ import { watch } from 'vue'
             watch(route, () => {this.getScheduledMessages(this.$route.params.guildId), this.addlink="/" + this.$route.params.guildId + "/add"});
             this.getScheduledMessages(this.$route.params.guildId);
             this.addlink="/" + this.$route.params.guildId + "/add";
+            this.editlink="/" + this.$route.params.guildId + "/edit/";
         },
         methods: {
             getScheduledMessages(guildId){
@@ -92,8 +94,10 @@ import { watch } from 'vue'
                     console.log(data)
                     this.getScheduledMessages(this.$route.params.guildId)
                 })
-            }
+            },
+            editScheduledMessage(){
 
+            }
         }
     }
 

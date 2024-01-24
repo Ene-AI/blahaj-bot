@@ -45,7 +45,7 @@
                 </v-btn>
             </v-menu>
             <v-btn
-                color="secondary"
+                color="white"
                 v-bind="props"
                 href="http://localhost:8080/discord/callback"
                 v-else
@@ -90,11 +90,15 @@ export default {
             guilds: []
         }
     },
-    beforeMount(){
+    mounted(){
         if(this.guilds){
             this.guild = this.guilds.find((guild) => guild.id == useRoute().params.guildId)
             this.getBotGuilds()
             console.log(this.unjoinedGuilds)
+        }
+        let currentUser = localStorage.getItem("currentUser")
+        if(currentUser && !this.user){
+            this.$router.go();
         }
     },
 
@@ -110,7 +114,7 @@ export default {
             }
         },
         login() {
-        window.location.href = "http://localhost:8080/discord/callback";
+            this.$router.push("/login")
         },
         getBotGuilds(){
             fetch(`http://localhost:8080/botGuilds`, {

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,13 +32,16 @@ public class ScheduledMessageController {
     @Autowired
     private final GuildUtils guildUtils;
 
+    @Value("${frontend-url}")
+    String frontEndURL;
+
     public ScheduledMessageController(ScheduledMessageServiceImpl scheduledMessageService, GuildUtils guildUtils) {
         this.scheduledMessageService = scheduledMessageService;
         this.guildUtils = guildUtils;
     }
 
     @GetMapping("{guildId}/scheduled-messages")
-    public List<ScheduledMessage> getScheduledMessages(@PathVariable("guildId") long guildId){
+    public List<ScheduledMessage> getScheduledMessages(@PathVariable("guildId") String guildId){
         return scheduledMessageService.getScheduledMessages(guildId);
     }
 
@@ -70,7 +74,7 @@ public class ScheduledMessageController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("botGuilds/")
+    @GetMapping("botGuilds")
     public List<String> getBotGuilds(){
         System.out.println("getting bot guilds");
         return guildUtils.getBotGuilds();
@@ -78,6 +82,6 @@ public class ScheduledMessageController {
 
     @GetMapping("discord/callback")
     public void DiscordLogin(HttpServletResponse response) throws IOException{
-        response.sendRedirect("http://localhost:5173");
+        response.sendRedirect(frontEndURL);
     }
 }
