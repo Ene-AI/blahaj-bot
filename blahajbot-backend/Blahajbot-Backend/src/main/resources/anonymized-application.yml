@@ -23,20 +23,24 @@ spring:
             client:
                 registration:
                     discord:
-                        provider: discord
                         client-id:
-                        client-secret: 
-                        client-authentication-method: client-secret-post
+                        client-secret:
                         authorization-grant-type: authorization_code
-                        scope:
-                            - identify
-                        redirect-uri: "http://localhost:8080/login/oauth2/code/discord"
-                        clientName: FourScouts client
+                        scope: identify, guilds
+                        redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+                        clientName: Blahajbot
                 provider:
                     discord:
-                        authorization-uri: https://discordapp.com/api/oauth2/authorize
+                        authorization-uri: 
                         token-uri: https://discordapp.com/api/oauth2/token
                         user-info-uri: https://discordapp.com/api/users/@me
                         user-name-attribute: username
+server:
+    port: 8080
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 token:
 frontend-url: http://localhost:5173
