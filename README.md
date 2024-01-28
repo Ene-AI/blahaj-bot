@@ -1,5 +1,5 @@
-# blahaj-bot
-A discord bot built to simplify the scheduling of automatic messages, with a web-based dashboard for easy configuration.
+# Blahajbot
+A discord bot themed after everyone's favorite swedish shark. It is built to simplify the scheduling of automatic messages, with a web-based dashboard for easy configuration.
 
 In the future, more features to expand the utility of the bot are planned such as:
 * Social Media Integration
@@ -14,5 +14,3 @@ Uses a combination of The Following:
 * PostgreSQL
 * Vue
 * Vuetify
-
-# deployment
