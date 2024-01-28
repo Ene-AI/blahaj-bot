@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
 import store from './store'
+import { properties } from './properties'
 
 // Vuetify
 import 'vuetify/styles'
@@ -21,8 +22,7 @@ const vuetify = createVuetify({
         defaultSet: 'mdi',
     },
   })
-
-const backendLink = "http://localhost:8080"
+const backendLink = properties.backendUrl
 const app = createApp(App)
 store.commit("SET_BACKEND_LINK", backendLink)
 

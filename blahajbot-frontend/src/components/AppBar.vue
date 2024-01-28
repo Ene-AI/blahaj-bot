@@ -22,7 +22,7 @@
                 </template>
             </v-select>
         </div>
-        <div>
+        <div class="ml-2 mr-5">
             <v-menu
             open-on-hover
             v-if="user"
