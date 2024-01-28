@@ -36,7 +36,7 @@ spring:
                         user-info-uri: https://discordapp.com/api/users/@me
                         user-name-attribute: username
 server:
-    port: 8080
+    port: 8056
 logging:
     level:
         org:
