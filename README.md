@@ -12,11 +12,11 @@ In the future, more features to expand the utility of the bot are planned such a
 * etc.
 
 ## Table of Contents
-1. [Introduction]()
-2. [Table of Contents]()
-3. [Tech Stack]()
-4. [Instructions for Use]()
-5. [Selfhosting]()
+1. [Introduction](https://github.com/Ene-AI/blahaj-bot/tree/master#introduction)
+2. [Table of Contents](https://github.com/Ene-AI/blahaj-bot/tree/master#table-of-contents)
+3. [Tech Stack](https://github.com/Ene-AI/blahaj-bot/tree/master#tech-stack)
+4. [Instructions for Use](https://github.com/Ene-AI/blahaj-bot/tree/master#instructions-for-use)
+5. [Selfhosting](https://github.com/Ene-AI/blahaj-bot/tree/master#selfhosting)
 
 ## Tech Stack:
 * Java
@@ -34,7 +34,7 @@ In the future, more features to expand the utility of the bot are planned such a
 * Vue-Router
 
 ## Instructions For Use
-Once deployed onto a server, the bot can be configured either through the web dashboard, or through slash commands in discord.
+Once deployed onto a server, the bot can be configured either through the [web dashboard](https://github.com/Ene-AI/blahaj-bot/tree/master#using-web-dashboard--), or through [slash commands in discord](https://github.com/Ene-AI/blahaj-bot/tree/master#using-slash-commands--).
 Enabling or disabling features currently requires the web dashboard.
 
 ### Using Slash Commands - 
