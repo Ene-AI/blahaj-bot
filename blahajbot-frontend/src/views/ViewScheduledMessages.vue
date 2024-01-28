@@ -1,13 +1,13 @@
 <template>
     <v-layout>
-        <NavBar/>
+        <AppBar/>
         <v-main>
             <!-- table-->
             <v-container>
                 <v-row>
                     <v-col>
                         <h1 class="text-center">View Jobs</h1>
-                        <v-btn color='primary' :href="addlink">Add Jobs</v-btn>
+                        <v-btn color='primary' :to="addlink">Add Jobs</v-btn>
                         <v-table>
                             <thead>
                                 <tr>
@@ -34,7 +34,7 @@
                                     <td>{{ scheduledMessage.dayOfWeek }}</td>
                                     <td>{{ scheduledMessage.repeat }}</td>
                                     <td class="d-flex flex-wrap ga-3">
-                                        <v-btn color='primary' :href="editlink + `${scheduledMessage.id}`">Edit</v-btn>
+                                        <v-btn color='primary' :to="editlink + `${scheduledMessage.id}`">Edit</v-btn>
 
                                         <v-btn color='red' @click="deleteScheduledMessage(scheduledMessage.id)">Delete</v-btn>
                                     </td>
@@ -51,14 +51,14 @@
 
 <script>
 
-import NavBar from '../components/NavBar.vue'
+import AppBar from '../components/AppBar.vue'
 import { useRoute } from 'vue-router'
 import { watch } from 'vue'
 
     export default {
         name: 'ViewScheduledMessages',
         components: {
-            NavBar
+            AppBar
         },
         data() {
             return {
@@ -77,7 +77,7 @@ import { watch } from 'vue'
         methods: {
             getScheduledMessages(guildId){
                 if(guildId){
-                    fetch(`http://localhost:8080/${this.$route.params.guildId}/scheduled-messages`, {
+                    fetch(`${this.$store.getters.backendLink}/${this.$route.params.guildId}/scheduled_messages`, {
                     })
                     .then(res => res.json())
                     .then(data => {
@@ -87,7 +87,7 @@ import { watch } from 'vue'
                 }
             },
             deleteScheduledMessage(id){
-                fetch(`http://localhost:8080/${this.$route.params.guildId}/scheduled-message/${id}`, {
+                fetch(`${this.$store.getters.backendLink}/${this.$route.params.guildId}/scheduled_message/${id}`, {
                     method: 'DELETE'
                 })
                 .then(data => {

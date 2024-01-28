@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blahaj.Blahajbot.config.security.oauth2.DiscordOAuth2User;
+import com.blahaj.Blahajbot.entity.GuildConfig;
 import com.blahaj.Blahajbot.entity.ScheduledMessage;
+import com.blahaj.Blahajbot.service.GuildConfigService;
 import com.blahaj.Blahajbot.service.ScheduledMessageServiceImpl;
 import com.blahaj.Blahajbot.util.GuildUtils;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class ScheduledMessageController {
@@ -30,22 +34,35 @@ public class ScheduledMessageController {
     @Autowired
     private final ScheduledMessageServiceImpl scheduledMessageService;
     @Autowired
+    private final GuildConfigService guildConfigService;
+    @Autowired
     private final GuildUtils guildUtils;
 
     @Value("${frontend-url}")
     String frontEndURL;
 
-    public ScheduledMessageController(ScheduledMessageServiceImpl scheduledMessageService, GuildUtils guildUtils) {
+    public ScheduledMessageController(ScheduledMessageServiceImpl scheduledMessageService, GuildConfigService guildConfigService,GuildUtils guildUtils) {
         this.scheduledMessageService = scheduledMessageService;
         this.guildUtils = guildUtils;
+        this.guildConfigService = guildConfigService;
     }
 
-    @GetMapping("{guildId}/scheduled-messages")
+    @GetMapping("{guildId}/config")
+    public GuildConfig getGuildConfig(@PathVariable("guildId") String guildId){
+        return guildConfigService.getGuildConfig(guildId);
+    }
+
+    @PutMapping("{guildId}/config")
+    public GuildConfig updateGuildConfig(@RequestBody GuildConfig guildConfig){
+        return guildConfigService.updateGuildConfig(guildConfig);
+    }
+
+    @GetMapping("{guildId}/scheduled_messages")
     public List<ScheduledMessage> getScheduledMessages(@PathVariable("guildId") String guildId){
         return scheduledMessageService.getScheduledMessages(guildId);
     }
 
-    @GetMapping("{guildId}/scheduled-message/{id}")
+    @GetMapping("{guildId}/scheduled_message/{id}")
     public ScheduledMessage getScheduledMessage(@PathVariable("id") long id) {
         return scheduledMessageService.getScheduledMessageById(id);
     }
@@ -55,13 +72,13 @@ public class ScheduledMessageController {
         scheduledMessageService.addScheduledMessage(scheduledMessage);
     }
 
-    @DeleteMapping("{guildId}/scheduled-message/{id}")
+    @DeleteMapping("{guildId}/scheduled_message/{id}")
     public String deleteScheduledMessage(@PathVariable("id") long id){
         scheduledMessageService.deleteScheduledMessage(id);
         return "Scheduled Message Deleted";
     }
     
-    @PutMapping("{guildId}/scheduled-message")
+    @PutMapping("{guildId}/scheduled_message")
     public ScheduledMessage updatScheduledMessage(@RequestBody ScheduledMessage scheduledMessage){
         return scheduledMessageService.updateScheduledMessage(scheduledMessage);
     }

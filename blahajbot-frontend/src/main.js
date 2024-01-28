@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import store from './store'
 
 // Vuetify
@@ -22,9 +22,11 @@ const vuetify = createVuetify({
     },
   })
 
+const backendLink = "http://localhost:8080"
 const app = createApp(App)
+store.commit("SET_BACKEND_LINK", backendLink)
 
-app.use(router)
+app.use(router(backendLink))
 app.use(store)
 app.use(vuetify)
 

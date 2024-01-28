@@ -1,6 +1,6 @@
 <template>
     <v-layout>
-        <NavBar/>
+        <AppBar/>
         <v-main>
             <div class="my-5">
                 <div class="mx-auto w-25" style="max-width: 100%">
@@ -88,14 +88,14 @@
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue'
+import AppBar from '../components/AppBar.vue'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
     name: 'AddScheduledMessage',
     components: {
-        NavBar,
+        AppBar,
         VueDatePicker
     },
 
@@ -128,7 +128,7 @@ export default {
             if(!this.scheduledMessage.repeat){
                 this.setMessageFromDate()
             }
-            fetch(`http://localhost:8080/${this.$route.params.guildId}/add`,{
+            fetch(`${this.$store.getters.backendLink}/${this.$route.params.guildId}/add`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'

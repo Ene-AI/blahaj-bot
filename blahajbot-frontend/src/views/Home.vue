@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <NavBar/>
+    <AppBar/>
     <v-main>
       
     </v-main>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-  import NavBar from '../components/NavBar.vue'
+  import AppBar from '../components/AppBar.vue'
 
   export default {
     name: "/home",
     components: {
-        NavBar
+        AppBar
     },
   }
 </script>
