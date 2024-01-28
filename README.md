@@ -12,8 +12,13 @@ In the future, more features to expand the utility of the bot are planned such a
 * etc.
 
 ## Table of Contents
+1. [Introduction]()
+2. [Table of Contents]()
+3. [Tech Stack]()
+4. [Instructions for Use]()
+5. [Selfhosting]()
 
-## Stack:
+## Tech Stack:
 * Java
 * Javascript
 * HTML
