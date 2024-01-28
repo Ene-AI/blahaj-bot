@@ -26,4 +26,6 @@ In the future, more features to expand the utility of the bot are planned such a
 * Vuex
 * Vue-Router
 
+## Selfhosting
+
 ## Instructions For Use
