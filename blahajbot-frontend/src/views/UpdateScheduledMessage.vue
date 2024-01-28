@@ -1,6 +1,8 @@
 <template>    
     <v-layout>
+        <Suspense>
         <AppBar/>
+        </Suspense>
         <v-main>
             <div class="my-5">
                 <div class="mx-auto w-25" style="max-width: 100%">

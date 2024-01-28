@@ -1,6 +1,8 @@
 <template>
     <v-layout>
+        <Suspense>
         <AppBar/>
+        </Suspense>
         <v-main>
             <!-- table-->
             <v-container>

@@ -1,6 +1,8 @@
 <template>
   <v-layout>
-    <AppBar/>
+    <Suspense>
+      <AppBar/>
+    </Suspense>
     <v-main>
       
     </v-main>

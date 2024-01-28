@@ -16,7 +16,7 @@
                 <template v-slot:append-item>
                     <v-divider></v-divider>           
                     <v-list>
-                        <v-list-item v-for="guild in unjoinedGuilds" :title="guild.name" append-icon="mdi-plus" :prepend-avatar="guild.icon" :to="'https://discord.com/oauth2/authorize?client_id=1075956771425890354&permissions=8&guild_id='+ guild.id + '&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2F&scope=bot+identify+guilds'">
+                        <v-list-item v-for="guild in unjoinedGuilds" :title="guild.name" append-icon="mdi-plus" :prepend-avatar="guild.icon" :href="'https://discord.com/oauth2/authorize?client_id=' + clientId + '&permissions=8&guild_id='+ guild.id + '&response_type=code&redirect_uri=' + encodedUri + '&scope=bot+identify+guilds'">
                         </v-list-item>
                     </v-list>
                 </template>
@@ -94,18 +94,22 @@ export default {
             },
             joinedGuilds: [],
             unjoinedGuilds: [],
-            blahajshark: ikeasblahajshark
+            blahajshark: ikeasblahajshark,
+            encodedUri: encodeURI(window.location)
         }
     },
-    setup() {
+    async setup() {
         const store = useStore()
-        store.dispatch("fetchUser")
+        await store.dispatch("fetchUser")
         let currentUser = localStorage.getItem("currentUser")
+        await store.dispatch("fetchClientId")
+        let clientId = "" + store.getters.clientId
         if (currentUser) {
             let user = JSON.parse(currentUser)
             return {
                 user: user,
                 guilds: user.guilds,
+                clientId: clientId
             }
         }
         return {

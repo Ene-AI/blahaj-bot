@@ -39,7 +39,9 @@ public class ScheduledMessageController {
     private final GuildUtils guildUtils;
 
     @Value("${frontend-url}")
-    String frontEndURL;
+    private String frontEndURL;
+    @Value("${spring.security.oauth2.client.registration.discord.client-id}")
+    private String clientId;
 
     public ScheduledMessageController(ScheduledMessageServiceImpl scheduledMessageService, GuildConfigService guildConfigService,GuildUtils guildUtils) {
         this.scheduledMessageService = scheduledMessageService;
@@ -101,4 +103,10 @@ public class ScheduledMessageController {
     public void DiscordLogin(HttpServletResponse response) throws IOException{
         response.sendRedirect(frontEndURL);
     }
+
+    @GetMapping("clientId")
+    public List<String> getClientId() {
+        return List.of(clientId);
+    }
+    
 }
