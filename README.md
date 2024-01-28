@@ -30,7 +30,7 @@ In the future, more features to expand the utility of the bot are planned such a
 Once deployed onto a server, the bot can be configured either through the web dashboard, or through slash commands in discord.
 Enabling or disabling features currently requires the web dashboard.
 ### Using Slash Commands
-#### Scheduled Jobs
+#### Scheduled Jobs:
 The list of commands is as follows:
 * /listjobs - creates a list of all existing jobs for the server the command is run in
 * /schedulejob - Schedules a new message to be sent periodically
