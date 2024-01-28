@@ -98,12 +98,38 @@ Rename anonymized-application.yml to application.yml and make the following chan
 
 You will need to create a database and user in your PostgreSQL instance and place the credentials for a user that can access the database and the link to the database itself if not using the default in the below locations on lines 3, 4, and 5.
 ```
-        url: jdbc:postgresql://localhost:5432/blahajbot
-        username: 
-        password: 
+3         url: jdbc:postgresql://localhost:5432/blahajbot
+4         username: 
+5         password: 
 ```
-Place your client id and secret into 
+Place your client id and secret on lines 26 and 27
+```
+26                         client-id:
+27                         client-secret:
+```
+Finally, place your token and your frontend Url (if not default) on lines 45 and 45
+```
+45 token:
+46 frontend-url: http://localhost:5173
+```
+
+If you are using anything other than the default port, you will also need to modify Blahajbot\blahajbot-frontend\src\properties.js to change the backendUrl to match the new port.
+```
+    backendUrl: 'http://localhost:8056'
+```
+
+Once the appropriate values have been replaced, you can run "mvn install" in the Blahajbot\blahajbot-backend\Blahajbot-Backend directory to build the project jar for the backend.
+
+It can then be run using the following command, substituting the output jar location:
+```
+java -jar C:pathtofile.jar
+```
+You can either run the frontend locally running the command 'npm run dev' in the Blahajbot\blahajbot-frontend\ directory, or you can find information on building and hosting a static webpage for the frontend can be found [here][Static Webpage Hosting Vite]
+
+
+
 
 [Cron Info Link]: https://www.ibm.com/docs/en/db2oc?topic=task-unix-cron-format
 [Channel ID Info Link]: https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
 [Discord App Setup]: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
+[Static Webpage Hosting Vite]: https://vitejs.dev/guide/static-deploy
