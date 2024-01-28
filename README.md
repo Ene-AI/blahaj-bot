@@ -83,6 +83,27 @@ The fields are as follows:
 * month, dayOfWeek, dayOfMonth, hour, and minute: These define the date and time the message will be sent with a maximum of sending once a minute. These values are compatible with cron formatting. [Learn more 
 
 ## Selfhosting
+### Requirements:
+```
+npm
+Maven
+Java 21
+```
+Instructions on creating an app and getting credentials may be found [here][Discord App Setup].
+
+In addition, you will need to add the following url to the bot's "REDIRECT URI(S)" configuration:
+* YourBackendUrlHere/login/oauth2/code/discord
+
+Rename anonymized-application.yml to application.yml and make the following changes:
+
+You will need to create a database and user in your PostgreSQL instance and place the credentials for a user that can access the database and the link to the database itself if not using the default in the below locations on lines 3, 4, and 5.
+```
+        url: jdbc:postgresql://localhost:5432/blahajbot
+        username: 
+        password: 
+```
+Place your client id and secret into 
 
 [Cron Info Link]: https://www.ibm.com/docs/en/db2oc?topic=task-unix-cron-format
 [Channel ID Info Link]: https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
+[Discord App Setup]: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
