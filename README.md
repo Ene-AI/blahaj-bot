@@ -29,8 +29,8 @@ In the future, more features to expand the utility of the bot are planned such a
 ## Instructions For Use
 Once deployed onto a server, the bot can be configured either through the web dashboard, or through slash commands in discord.
 Enabling or disabling features currently requires the web dashboard.
-
-### Scheduled Jobs
+### Using Slash Commands
+#### Scheduled Jobs
 The list of commands is as follows:
 * /listjobs - creates a list of all existing jobs for the server the command is run in
 * /schedulejob - Schedules a new message to be sent periodically
@@ -48,10 +48,13 @@ The list of commands is as follows:
   ..-label: The name of the new message
   ..-channel: The channel in which the message will be sent
   ..-message: The contents of the message to be sent
-  ..-month, dayOfWeek, dayOfMonth, hour, and minute: These define the date and time the message will be sent with a maximum of sending once a minute. These values are compatible with cron formatting. [Learn more here](https://www.ibm.com/docs/en/db2oc?
+  ..-month, dayOfWeek, dayOfMonth, hour, and minute: These define the date and time the message will be sent with a maximum of sending once a minute. These values are compatible with cron formatting. [Learn more here][Cron Info Link]
 * /removejob - Removes a scheduled job from the database
   ..-id: The id of the job you wish to delete. Can be found using /listjobs
 
+### Using Web Dashboard
+
+#### Scheduled Jobs
 
 ## Selfhosting
 
