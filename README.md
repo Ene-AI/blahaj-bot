@@ -29,8 +29,10 @@ In the future, more features to expand the utility of the bot are planned such a
 ## Instructions For Use
 Once deployed onto a server, the bot can be configured either through the web dashboard, or through slash commands in discord.
 Enabling or disabling features currently requires the web dashboard.
-### Using Slash Commands
+
+### Using Slash Commands - 
 #### Scheduled Jobs:
+
 The list of commands is as follows:
 * /listjobs - creates a list of all existing jobs for the server the command is run in
 * /schedulejob - Schedules a new message to be sent periodically
@@ -52,9 +54,8 @@ The list of commands is as follows:
 * /removejob - Removes a scheduled job from the database
   ..-id: The id of the job you wish to delete. Can be found using /listjobs
 
-### Using Web Dashboard
-
-#### Scheduled Jobs
+### Using Web Dashboard - 
+#### Scheduled Jobs:
 
 ## Selfhosting
 
