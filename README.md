@@ -1,6 +1,6 @@
 # Blahajbot
 
-##Introduction
+## Introduction
 
 A discord bot themed after everyone's favorite swedish shark. It is built to simplify the scheduling of automatic messages, with a web-based dashboard for easy configuration.
 
@@ -11,7 +11,7 @@ In the future, more features to expand the utility of the bot are planned such a
 * Role Menus
 * etc.
 
-##Stack:
+## Stack:
 * Java
 * Javascript
 * HTML
@@ -26,4 +26,4 @@ In the future, more features to expand the utility of the bot are planned such a
 * Vuex
 * Vue-Router
 
-##Instructions For Use
+## Instructions For Use
