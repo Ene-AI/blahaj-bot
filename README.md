@@ -11,6 +11,8 @@ In the future, more features to expand the utility of the bot are planned such a
 * Role Menus
 * etc.
 
+## Table of Contents
+
 ## Stack:
 * Java
 * Javascript
@@ -31,7 +33,7 @@ Once deployed onto a server, the bot can be configured either through the web da
 Enabling or disabling features currently requires the web dashboard.
 
 ### Using Slash Commands - 
-#### Scheduled Jobs:
+#### Scheduled Messages:
 
 The list of commands is as follows:
 * /listjobs - creates a list of all existing jobs for the server the command is run in
@@ -55,8 +57,27 @@ The list of commands is as follows:
   ..-id: The id of the job you wish to delete. Can be found using /listjobs
 
 ### Using Web Dashboard - 
-#### Scheduled Jobs:
+
+Upon reaching the web dashboard, the first thing you will want to do is login to discord using the link at the top right.
+
+Once you are logged in you should be able to select any of the discord servers you have appropriate permissions for from the dropdown menu at the top of the page.
+
+You will be redirected to the config page, which allows you to toggle the functionality of any of the bot's features. As of writing, this only include the scheduled message functionality. You cam select the wrench icon on any of these features to configure them further.
+
+#### Scheduled Messages:
+On this configuration page you will see a list of all the scheduled messages that currently exist. You can use the labeled buttons to Add a new scheduled message, or Edit or Delete and existing message.
+
+The Add and Edit forms are identical, but the Edit form will be prepopulated with the information for the existing message. 
+
+The fields are as follows:
+* Channel Id: This denotes the channel that the message will be sent in. Information on finding the channel id can be found [here][Channel ID Info Link]
+* label: The name of the new message
+* channel: The channel in which the message will be sent
+* message: The contents of the message to be sent
+* repeat: Choose weather to send a one time message on a specific calendar date and time set using a datetime selector, or to set a repeating message with the following fields
+* month, dayOfWeek, dayOfMonth, hour, and minute: These define the date and time the message will be sent with a maximum of sending once a minute. These values are compatible with cron formatting. [Learn more 
 
 ## Selfhosting
 
 [Cron Info Link]: https://www.ibm.com/docs/en/db2oc?topic=task-unix-cron-format
+[Channel ID Info Link]: https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
