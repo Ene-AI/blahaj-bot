@@ -10,6 +10,7 @@ In the future, more features to expand the utility of the bot are planned such a
 
 Uses a combination of The Following:
 * Spring Boot
+* Quartz
 * Discord4J
 * PostgreSQL
 * Vue
